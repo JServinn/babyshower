@@ -104,15 +104,15 @@
   .ctrl-btn.play{width:46px; height:46px; border-radius:50%; border:1.5px solid var(--morado-suave); display:flex; align-items:center; justify-content:center;}
   .ctrl-btn.play svg{width:16px; height:16px; margin-left:2px;}
 
-  .invite-block{margin-top:44px;}
+  .invite-block{margin-top:44px; position:relative; z-index:2;}
   .invite-eyebrow{font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--terracota); margin-bottom:4px; font-weight:500;}
   .invite-title{font-family:'Cormorant Garamond', serif; font-weight:600; font-size:clamp(26px,5vw,34px); color:var(--morado);}
 
-  .parents-block{margin-top:40px;}
+  .parents-block{margin-top:40px; position:relative; z-index:2;}
   .parents-label{font-size:12.5px; letter-spacing:2.5px; text-transform:uppercase; color:var(--terracota); margin-bottom:6px; font-weight:500;}
   .parents-names{font-family:'Great Vibes', cursive; font-size:clamp(38px,7vw,54px); color:var(--lavanda);}
 
-  .hero-msg{margin-top:36px; max-width:420px; font-weight:300; font-size:14.5px; line-height:1.8; color:var(--morado);}
+  .hero-msg{margin-top:36px; max-width:420px; font-weight:300; font-size:14.5px; line-height:1.8; color:var(--morado); position:relative; z-index:2;}
   .scroll-hint{margin-top:44px; font-size:10.5px; letter-spacing:2px; text-transform:uppercase; color:var(--terracota); opacity:.7;}
 
   section{padding:80px 22px; max-width:600px; margin:0 auto; position:relative; z-index:1;}
@@ -176,18 +176,27 @@
   @keyframes heartfloat{0%,100%{transform:translateY(0) rotate(0deg); opacity:.5;} 50%{transform:translateY(-8px) rotate(6deg); opacity:.9;}}
 
   /* seccion escuchar el corazon */
-  .heart-btn{
-    background:none; border:none; cursor:pointer; padding:0; margin:8px auto 6px;
-    display:block; width:76px; height:76px;
+  .heart-card{
+    background:#fff; border-radius:24px; padding:38px 28px 32px;
+    box-shadow:0 14px 36px rgba(76,66,103,0.10);
+    max-width:300px; margin:0 auto; text-align:center;
   }
-  .heart-btn svg{width:100%; height:100%; filter:drop-shadow(0 8px 16px rgba(184,135,111,0.25));}
+  .heart-btn{
+    background:none; border:none; cursor:pointer; padding:0; margin:0 auto;
+    display:block; width:70px; height:70px;
+  }
+  .heart-btn svg{width:100%; height:100%; display:block; filter:drop-shadow(0 8px 14px rgba(184,135,111,0.28));}
   .heart-btn.beating svg{animation:heartbeat 1.05s ease-in-out infinite;}
-  @keyframes heartbeat{0%,100%{transform:scale(1);} 22%{transform:scale(1.18);} 40%{transform:scale(0.96);} 55%{transform:scale(1.12);} 70%{transform:scale(1);}}
-  .ekg-svg{width:220px; max-width:80%; height:36px; margin:6px auto 4px; display:block;}
-  #ekgLine{stroke-dasharray:340; stroke-dashoffset:340;}
-  .heart-btn.beating ~ .ekg-svg #ekgLine{animation:ekgmove 1.4s linear infinite;}
-  @keyframes ekgmove{0%{stroke-dashoffset:340;} 100%{stroke-dashoffset:0;}}
-  .heart-caption{font-size:12.5px; font-weight:300; color:var(--morado); opacity:.7; margin-top:4px;}
+  @keyframes heartbeat{0%,100%{transform:scale(1);} 22%{transform:scale(1.16);} 40%{transform:scale(0.97);} 55%{transform:scale(1.1);} 70%{transform:scale(1);}}
+
+  .wave-row{display:flex; align-items:center; justify-content:center; gap:3.5px; height:34px; margin:20px auto 8px;}
+  .wave-bar{width:3px; border-radius:2px; background:var(--terracota); opacity:.4; transform-origin:50% 50%; transition:opacity .3s ease;}
+  .wave-row.beating .wave-bar{opacity:.95; animation:wavepulse 1s ease-in-out infinite;}
+  .wave-row.beating .wave-bar:nth-child(odd){animation-duration:0.8s;}
+  .wave-row.beating .wave-bar:nth-child(3n){animation-duration:1.15s;}
+  @keyframes wavepulse{0%,100%{transform:scaleY(0.4);} 50%{transform:scaleY(1.9);}}
+
+  .heart-caption{font-size:12.5px; font-weight:300; color:var(--morado); opacity:.7; margin-top:6px;}
 
   /* particulas de fondo */
   .particles-layer{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;}
@@ -203,6 +212,14 @@
   .divider{display:flex; align-items:center; justify-content:center; gap:16px; max-width:260px; margin:0 auto; position:relative; z-index:1; padding:6px 0;}
   .divider .dash{flex:1; height:1px; background:var(--linea);}
   .divider .dicon{width:20px; height:20px; flex:none;}
+
+  /* tarjeta contenedora para secciones alternadas */
+  .section-card{
+    background:rgba(255,255,255,0.55); border-radius:26px; padding:38px 26px;
+    box-shadow:0 14px 30px rgba(76,66,103,0.06);
+    backdrop-filter:blur(2px);
+    position:relative; z-index:1;
+  }
 
   /* animalitos */
   .critter{position:absolute; z-index:1;}
@@ -238,6 +255,7 @@
   .list-text{text-align:center; font-weight:300; font-size:14.5px; line-height:1.85; max-width:420px; margin:0 auto 30px; color:var(--morado);}
   .list-cta{text-align:center; margin-bottom:34px;}
   .thanks{text-align:center; font-weight:300; font-size:14.5px; color:var(--morado);}
+  .confirm-wrap .confirm-text{text-align:center; font-weight:300; font-size:14.5px; line-height:1.75; max-width:380px; margin:0 auto 28px; color:var(--morado);}
 
   footer{text-align:center; padding:70px 24px 60px; position:relative; overflow:hidden;}
   .footer-cursive{font-family:'Great Vibes', cursive; font-size:42px; color:var(--lavanda); margin-bottom:6px;}
@@ -297,7 +315,7 @@
   <section class="hero" style="max-width:none;">
 
     <svg class="corner-cloud float" style="top:6%; left:-4%; width:150px;" viewBox="0 0 200 100"><path d="M40,70 a30,30 0 1,1 8,-40 a35,35 0 0,1 60,10 a25,25 0 0,1 5,49 z" fill="#F3E7D8"/></svg>
-    <svg class="corner-cloud float" style="bottom:22%; right:-6%; width:130px; animation-delay:-3s;" viewBox="0 0 200 100"><path d="M40,70 a30,30 0 1,1 8,-40 a35,35 0 0,1 60,10 a25,25 0 0,1 5,49 z" fill="#F3E7D8"/></svg>
+    <svg class="corner-cloud float" style="top:2%; right:-6%; width:110px; animation-delay:-3s;" viewBox="0 0 200 100"><path d="M40,70 a30,30 0 1,1 8,-40 a35,35 0 0,1 60,10 a25,25 0 0,1 5,49 z" fill="#F3E7D8"/></svg>
     <svg class="corner-star twinkle" style="top:10%; right:8%; width:26px;" viewBox="0 0 24 24"><path class="star-shape" d="M12 2l2.4 7.2H22l-6 4.4 2.4 7.2L12 16.4 5.6 20.8 8 13.6 2 9.2h7.6z"/></svg>
     <svg class="corner-star twinkle" style="top:20%; left:9%; width:14px; animation-delay:-1s;" viewBox="0 0 24 24"><path class="star-shape" d="M12 2l2.4 7.2H22l-6 4.4 2.4 7.2L12 16.4 5.6 20.8 8 13.6 2 9.2h7.6z"/></svg>
     <svg class="corner-star twinkle" style="bottom:32%; left:6%; width:18px; animation-delay:-2s;" viewBox="0 0 24 24"><path class="star-shape" d="M12 2l2.4 7.2H22l-6 4.4 2.4 7.2L12 16.4 5.6 20.8 8 13.6 2 9.2h7.6z"/></svg>
@@ -404,8 +422,7 @@
       <ellipse cx="34" cy="58" rx="4.5" ry="3" fill="var(--rosa)" opacity="0.6"/>
       <ellipse cx="66" cy="58" rx="4.5" ry="3" fill="var(--rosa)" opacity="0.6"/>
     </svg>
-    <div class="label-top">Nuestra espera</div>
-    <svg class="critter waddle" style="bottom:2%; left:4%; width:48px;" viewBox="0 0 80 80">
+    <svg class="critter waddle" style="bottom:2%; left:4%; width:48px; z-index:2;" viewBox="0 0 80 80">
       <ellipse cx="40" cy="52" rx="26" ry="22" fill="var(--dorado)"/>
       <circle cx="28" cy="28" r="15" fill="var(--dorado)"/>
       <path d="M14 28 l-10 -3 l4 8 z" fill="var(--terracota)"/>
@@ -413,15 +430,18 @@
       <ellipse cx="34" cy="48" rx="8" ry="6" fill="#fff" opacity="0.35"/>
       <path d="M30 66 l-4 6 M40 68 l0 7 M50 66 l4 6" stroke="var(--terracota)" stroke-width="1.6" stroke-linecap="round"/>
     </svg>
-    <div class="gallery-grid">
-      <div class="polaroid">
-        <div class="polaroid-frame"><img src="eco-1.jpg" alt="Ultrasonido de Julieta Lilieth"></div>
-      </div>
-      <div class="polaroid">
-        <div class="polaroid-frame"><img src="eco-2.png" alt="Ultrasonido de Julieta Lilieth"></div>
-      </div>
-      <div class="polaroid">
-        <div class="polaroid-frame"><img src="eco-3.png" alt="Ultrasonido de Julieta Lilieth"></div>
+    <div class="section-card">
+      <div class="label-top">Nuestra espera</div>
+      <div class="gallery-grid">
+        <div class="polaroid">
+          <div class="polaroid-frame"><img src="eco-1.jpg" alt="Ultrasonido de Julieta Lilieth"></div>
+        </div>
+        <div class="polaroid">
+          <div class="polaroid-frame"><img src="eco-2.png" alt="Ultrasonido de Julieta Lilieth"></div>
+        </div>
+        <div class="polaroid">
+          <div class="polaroid-frame"><img src="eco-3.png" alt="Ultrasonido de Julieta Lilieth"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -440,18 +460,34 @@
 
     <audio id="heartAudio" src="Corazon-Julieta.mp3" preload="auto"></audio>
 
-    <button class="heart-btn" id="heartBtn" aria-label="Escuchar el corazón de Julieta">
-      <svg id="heartIconPlay" viewBox="0 0 24 24"><path fill="var(--rosa)" d="M12 21s-7-4.6-9.5-9C.7 8.3 2.6 5 6 5c2 0 3.3 1 4 2.3C10.7 6 12 5 14 5c3.4 0 5.3 3.3 3.5 7-2.5 4.4-9.5 9-9.5 9z"/></svg>
-      <svg id="heartIconPause" style="display:none" viewBox="0 0 24 24"><path fill="var(--rosa)" d="M12 21s-7-4.6-9.5-9C.7 8.3 2.6 5 6 5c2 0 3.3 1 4 2.3C10.7 6 12 5 14 5c3.4 0 5.3 3.3 3.5 7-2.5 4.4-9.5 9-9.5 9z" opacity="0.5"/><rect x="9" y="9" width="2.4" height="7" rx="1" fill="var(--morado)"/><rect x="13.6" y="9" width="2.4" height="7" rx="1" fill="var(--morado)"/></svg>
-    </button>
+    <div class="heart-card">
+      <button class="heart-btn" id="heartBtn" aria-label="Escuchar el corazón de Julieta">
+        <svg id="heartIconPlay" viewBox="0 0 24 24"><path fill="var(--rosa)" d="M12 21s-7-4.6-9.5-9C.7 8.3 2.6 5 6 5c2 0 3.3 1 4 2.3C10.7 6 12 5 14 5c3.4 0 5.3 3.3 3.5 7-2.5 4.4-9.5 9-9.5 9z"/></svg>
+        <svg id="heartIconPause" style="display:none" viewBox="0 0 24 24"><path fill="var(--rosa)" d="M12 21s-7-4.6-9.5-9C.7 8.3 2.6 5 6 5c2 0 3.3 1 4 2.3C10.7 6 12 5 14 5c3.4 0 5.3 3.3 3.5 7-2.5 4.4-9.5 9-9.5 9z" opacity="0.55"/><rect x="6.9" y="9.5" width="2.2" height="8" rx="1.1" fill="#fff"/><rect x="10.9" y="9.5" width="2.2" height="8" rx="1.1" fill="#fff"/></svg>
+      </button>
 
-    <svg class="ekg-svg" viewBox="0 0 260 40" preserveAspectRatio="none">
-      <path id="ekgLine" d="M0 20 L60 20 L72 20 L80 4 L90 34 L100 20 L112 20 L260 20"
-        fill="none" stroke="var(--terracota)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+      <div class="wave-row" id="waveRow">
+        <span class="wave-bar" style="height:8px;"></span>
+        <span class="wave-bar" style="height:16px;"></span>
+        <span class="wave-bar" style="height:24px;"></span>
+        <span class="wave-bar" style="height:14px;"></span>
+        <span class="wave-bar" style="height:28px;"></span>
+        <span class="wave-bar" style="height:12px;"></span>
+        <span class="wave-bar" style="height:20px;"></span>
+        <span class="wave-bar" style="height:30px;"></span>
+        <span class="wave-bar" style="height:16px;"></span>
+        <span class="wave-bar" style="height:10px;"></span>
+        <span class="wave-bar" style="height:22px;"></span>
+        <span class="wave-bar" style="height:28px;"></span>
+        <span class="wave-bar" style="height:14px;"></span>
+        <span class="wave-bar" style="height:20px;"></span>
+        <span class="wave-bar" style="height:9px;"></span>
+      </div>
 
-    <p class="heart-caption" id="heartCaption">Toca el corazón para escuchar el latido de Julieta</p>
+      <p class="heart-caption" id="heartCaption">Toca el corazón para escuchar el latido de Julieta</p>
+    </div>
   </section>
+
 
   <div class="divider">
     <div class="dash"></div>
@@ -513,7 +549,7 @@
       <div class="arch-title">Recepción</div>
       <div class="pin-wrap"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
       <div class="arch-address">Callejón de S. Felipe, Tecámac Centro<br>55740 Tecámac de Felipe Villanueva, Méx.</div>
-      <a class="outline-btn" href="https://www.google.com/maps/search/?api=1&query=Callej%C3%B3n%20de%20S.%20Felipe%2C%20Tec%C3%A1mac%20Centro%2C%2055740%20Tec%C3%A1mac%20de%20Felipe%20Villanueva%2C%20M%C3%A9x." target="_blank" rel="noopener">Ver ubicación</a>
+      <a class="outline-btn" href="https://maps.app.goo.gl/LcC6fcyv2ae8rSND7" target="_blank" rel="noopener">Ver ubicación</a>
     </div>
   </section>
 
@@ -557,13 +593,31 @@
       <ellipse cx="46" cy="40" rx="2.4" ry="3" fill="var(--morado)" class="blink"/>
       <circle cx="34" cy="48" r="2" fill="var(--morado)"/>
     </svg>
-    <div class="list-eyebrow">Con cariño</div>
-    <div class="list-title"><span class="r">Baby</span><span class="c">List</span></div>
-    <p class="list-text">Tu presencia es nuestro mejor regalo. Si deseas obsequiarnos algo adicional para Julieta Lilieth, hemos preparado una mesa de regalos para mayor comodidad.</p>
-    <div class="list-cta">
-      <a class="solid-btn lav" href="https://www.amazon.com.mx/baby-reg/casandraameyali-ceballosgarza-septiembre-2026-tecamacdefelipevillanueva/1RH1GRWFYTJ82" target="_blank" rel="noopener">Ver lista de regalos</a>
+    <div class="section-card">
+      <div class="list-eyebrow">Con cariño</div>
+      <div class="list-title"><span class="r">Baby</span><span class="c">List</span></div>
+      <p class="list-text">Tu presencia es nuestro mejor regalo. Si deseas obsequiarnos algo adicional para Julieta Lilieth, hemos preparado una mesa de regalos para mayor comodidad.</p>
+      <div class="list-cta">
+        <a class="solid-btn lav" href="https://www.amazon.com.mx/baby-reg/casandraameyali-ceballosgarza-septiembre-2026-tecamacdefelipevillanueva/1RH1GRWFYTJ82" target="_blank" rel="noopener">Ver lista de regalos</a>
+      </div>
+      <p class="thanks">¡Gracias por acompañarnos en este momento tan especial!</p>
     </div>
-    <p class="thanks">¡Gracias por acompañarnos en este momento tan especial!</p>
+  </section>
+
+  <div class="divider">
+    <div class="dash"></div>
+    <svg class="dicon heart-float" viewBox="0 0 24 24"><path fill="var(--rosa)" d="M12 21s-7-4.6-9.5-9C.7 8.3 2.6 5 6 5c2 0 3.3 1 4 2.3C10.7 6 12 5 14 5c3.4 0 5.3 3.3 3.5 7-2.5 4.4-9.5 9-9.5 9z"/></svg>
+    <div class="dash"></div>
+  </div>
+
+  <section class="reveal confirm-wrap" style="overflow:hidden;">
+    <svg class="corner-star twinkle" style="position:absolute; top:10%; right:10%; width:15px;" viewBox="0 0 24 24"><path class="star-shape" d="M12 2l2.4 7.2H22l-6 4.4 2.4 7.2L12 16.4 5.6 20.8 8 13.6 2 9.2h7.6z"/></svg>
+    <svg class="corner-cloud float" style="position:absolute; bottom:6%; left:-6%; width:100px; animation-delay:-2.5s;" viewBox="0 0 200 100"><path d="M40,70 a30,30 0 1,1 8,-40 a35,35 0 0,1 60,10 a25,25 0 0,1 5,49 z" fill="#F3E7D8"/></svg>
+    <div class="label-top">Confirma tu asistencia</div>
+    <p class="confirm-text">Nos encantaría contar contigo. Ayúdanos a organizar todo con cariño confirmando tu lugar antes del 25 de julio.</p>
+    <div style="text-align:center;">
+      <a class="solid-btn" href="https://wa.me/525591240530?text=%C2%A1Hola!%20Confirmo%20mi%20asistencia%20al%20baby%20shower%20de%20Julieta%20Lilieth%20%F0%9F%92%9C" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+    </div>
   </section>
 
   <div class="divider">
@@ -646,11 +700,13 @@
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   const target = new Date('2026-08-01T14:00:00-06:00').getTime();
+  const daysNumEls = document.querySelectorAll('.days-num');
   function updateCountdown(){
     const now = new Date().getTime();
     const diff = target - now;
     if(diff <= 0){
       document.getElementById('countdown').innerHTML = '<p style="font-size:15px;font-weight:300;">¡Hoy es el gran día! 🌙</p>';
+      daysNumEls.forEach(el=> el.textContent = '0');
       return;
     }
     const d = Math.floor(diff/(1000*60*60*24));
@@ -661,6 +717,7 @@
     document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
     document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
     document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+    daysNumEls.forEach(el=> el.textContent = d);
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
@@ -705,14 +762,18 @@
   const heartCaption = document.getElementById('heartCaption');
   let heartPlaying = false;
 
+  const waveRow = document.getElementById('waveRow');
+
   function setHeartPlaying(state){
     heartPlaying = state;
     if(state){
       heartBtn.classList.add('beating');
+      waveRow.classList.add('beating');
       heartIconPlay.style.display='none'; heartIconPause.style.display='block';
       heartCaption.textContent = 'Escuchando el corazón de Julieta…';
     } else {
       heartBtn.classList.remove('beating');
+      waveRow.classList.remove('beating');
       heartIconPlay.style.display='block'; heartIconPause.style.display='none';
       heartCaption.textContent = 'Toca el corazón para escuchar el latido de Julieta';
     }
